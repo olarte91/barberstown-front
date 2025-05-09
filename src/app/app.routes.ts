@@ -4,6 +4,7 @@ import { BarberosPageComponent } from './pages/barberos/barberos-page.component.
 import { ClientesPageComponent } from './pages/clientes-page/clientes-page.component';
 import { CitasPageComponent } from './pages/citas-page/citas-page.component';
 import { VentasPageComponent } from './pages/ventas-page/ventas-page.component';
+import { AgregarFormComponent } from './components/agregar-form/agregar-form.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,10 @@ export const routes: Routes = [
   {
     path: 'ventas',
     component: VentasPageComponent
+  },
+  {
+    path: 'agregar-form',
+    component: AgregarFormComponent
   },
   {
     path: '**',
