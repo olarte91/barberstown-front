@@ -1,47 +1,26 @@
-<article class="flex flex-col sm:flex-row w-full h-full">
+<article class="flex flex-col sm:flex-row w-full h-full justify-center items-center">
 
-  <div class="flex justify-center align-center w-full py-5 ">
+  <div class=" w-full h-full m-5 flex justify-center items-center">
     <h1 class="text-5xl font-bold self-center">Agregar barbero</h1>
   </div>
 
-  <form class="rounded px-8 py-12 mb-4 w-full h-full">
-    <div class="mb-4 w-full shadow-sm py-2">
-      <app-label-form forLabel="Nombre" />
-      <app-input-form placeHolder="Nombre" inputType="text" class="w-full"/>
-    </div>
+  <form [formGroup]="barberoForm" (ngSubmit)="onSubmit()"
+    class="rounded px-8 py-12 mb-4 w-full h-full bg-blue-300 flex flex-col items-center justify-center">
+    <input type="text" formControlName="nombre" placeholder="Nombre"
+      class="w-1/2 px-3 py-2 mb-5 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-500 bg-white">
 
-    <div class="mb-4 w-full shadow-sm py-2">
-      <app-label-form forLabel="Apellido" />
-      <app-input-form placeHolder="Apellido" inputType="text" />
-    </div>
+    <input type="text" formControlName="apellido" placeholder="Apellido"
+      class="w-1/2 px-3 py-2 mb-5 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-500 bg-white">
 
-    <div class="mb-4 w-full shadow-sm py-2">
-      <app-label-form forLabel="Teléfono" />
-      <app-input-form placeHolder="Teléfono" inputType="text" />
-    </div>
+    <input type="text" formControlName="telefono" placeholder="Teléfono"
+      class="w-1/2 px-3 py-2 mb-5 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-500 bg-white">
 
-    <div class="mb-4 w-full shadow-sm py-2">
-      <app-label-form forLabel="Correo" />
-      <app-input-form placeHolder="Correo" inputType="text" />
-    </div>
+    <input type="text" formControlName="correo" placeholder="Email"
+      class="w-1/2 px-3 py-2 mb-5 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-500 bg-white">
 
-    <div class="mb-4 w-full shadow-sm py-2">
-      <app-label-form forLabel="Hora Entrada" />
-      <app-input-form inputType="time" />
-    </div>
+    <input type="text" formControlName="imagen" placeholder="Imagen"
+      class="w-1/2 px-3 py-2 mb-5 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-500 bg-white">
 
-    <div class="mb-4 w-full shadow-sm py-2">
-      <app-label-form forLabel="Hora salida" />
-      <app-input-form inputType="time" />
-    </div>
-
-    <div class="mb-4 w-full shadow-sm py-2">
-      <app-button-form label="Enviar" />
-    </div>
-    </form>
+    <button type="submit" class="bg-blue-950 text-white font-bold italic px-5 py-2 rounded-xl">Enviar</button>
+  </form>
 </article>
-
-
-
-
-

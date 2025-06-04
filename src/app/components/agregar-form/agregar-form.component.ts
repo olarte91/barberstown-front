@@ -1,12 +1,54 @@
 import { Component } from '@angular/core';
-import { LabelFormComponent } from "../label-form/label-form.component";
-import { InputFormComponent } from "../input-form/input-form.component";
-import { ButtonFormComponent } from "../button-form/button-form.component";
+import { BarberoService } from '../../services/barbero.service';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Barbero } from '../../models/barbero.interface';
 
 @Component({
   selector: 'app-agregar-form',
-  imports: [LabelFormComponent, InputFormComponent, ButtonFormComponent],
+  imports: [ReactiveFormsModule],
   templateUrl: './agregar-form.component.html',
 })
 export class AgregarFormComponent {
+  barberoForm: FormGroup;
+
+  constructor(private barberoService: BarberoService,
+    private fb: FormBuilder
+  ){
+    this.barberoForm = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      apellido: ['', [Validators.required, Validators.minLength(2)]],
+      telefono: ['', [Validators.required, Validators.maxLength(10)]],
+      correo: ['', [Validators.required, Validators.email]],
+      imagen: ['', Validators.required]
+
+    });
+  }
+
+  onSubmit(){
+    if(this.barberoForm.valid){
+      const barbero: Barbero = this.barberoForm.value;
+
+      this.barberoService.createBarbero(barbero).subscribe({
+        next:(response)=>{
+          console.log('Barbero creado exitosamente: ', response);
+          this.barberoForm.reset();
+        },
+        error: (error)=>{
+          console.log('Error al crear barbero:', error);
+        }
+      });
+    }else{
+      console.log('Formulario inválido');
+      this.markFormGroupTouched();
+    }
+  }
+
+  private markFormGroupTouched(){
+    Object.keys(this.barberoForm.controls).forEach(key=>{
+      const control = this.barberoForm.get(key);
+      control?.markAsTouched();
+    });
+  }
+
+
  }
