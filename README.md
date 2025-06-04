@@ -1,59 +1,85 @@
 # BarberstownFront
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+BarberstownFront es la interfaz web desarrollada con Angular para el sistema de gestión de citas de barberías Barberstown. Permite a los usuarios reservar, modificar y gestionar citas de manera sencilla e intuitiva.
 
-## Development server
+## Tabla de contenidos
 
-To start a local development server, run:
+- [Descripción](#descripción)
+- [Características principales](#características-principales)
+- [Tecnologías](#tecnologías)
+- [Requisitos](#requisitos)
+- [Instalación](#instalación)
+- [Desarrollo](#desarrollo)
+- [Construcción y despliegue](#construcción-y-despliegue)
+- [Pruebas](#pruebas)
+- [Integración con backend](#integración-con-backend)
+- [Contribución](#contribución)
+- [Licencia](#licencia)
 
-```bash
-ng serve
-```
+## Descripción
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+BarberstownFront es el frontend de una solución integral para la gestión de citas en barberías. Está diseñado para ofrecer una experiencia de usuario fluida y eficiente, facilitando la interacción con el sistema de gestión de citas backend.
 
-## Code scaffolding
+## Características principales
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Reserva de citas:** Los usuarios pueden crear, modificar y cancelar citas fácilmente.
+- **Gestión de clientes:** Registro y consulta de información de clientes.
+- **Interfaz intuitiva:** Diseño moderno y accesible, pensado para facilitar la navegación.
+- **Integración con backend:** Comunicación segura y eficiente con el API REST de Barberstown.
+- **Validación de formularios:** Validación en tiempo real de los datos ingresados por el usuario.
 
-```bash
-ng generate component component-name
-```
+## Tecnologías
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Framework:** Angular 19
+- **Lenguaje:** TypeScript
+- **Herramientas:** Angular CLI, npm
+- **Estilos:** Tailwind CSS
+- **Integración:** API REST, CORS
 
-```bash
-ng generate --help
-```
+## Requisitos
 
-## Building
+- **Node.js** (última versión LTS recomendada)
+- **npm** o **yarn**
+- **Angular CLI** (opcional, pero recomendado para desarrollo)
 
-To build the project run:
+## Instalación
 
-```bash
+1. Clona el repositorio:
+git clone https://github.com/olarte91/barberstown-front.git
+
+2. Accede al directorio del proyecto:
+cd barberstown-front
+
+3. Instala las dependencias:
+npm install
+
+4. Configura las variables de entorno si es necesario (por ejemplo, la URL del backend).
+
+## Desarrollo
+
+Para iniciar el servidor de desarrollo, ejecuta:
+ng serve -o
+
+Abre tu navegador y navega a `http://localhost:4200/`. La aplicación se recargará automáticamente al realizar cambios en el código[1].
+
+## Construcción y despliegue
+
+Para compilar el proyecto y generar los archivos de producción:
+
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Los archivos generados se almacenan en la carpeta `dist/barberstown-front`. Puedes desplegar estos archivos en cualquier servidor web estático.
 
-## Running unit tests
+## Pruebas
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Pruebas unitarias:** Ejecuta `ng test` para lanzar las pruebas con Karma.
+- **Pruebas end-to-end:** Ejecuta `ng e2e` para pruebas e2e (asegúrate de tener configurado un framework como Cypress o Protractor).
 
-```bash
-ng test
-```
+## Integración con backend
 
-## Running end-to-end tests
+BarberstownFront está diseñado para comunicarse con el backend de Barberstown desarrollado en Spring Boot. Asegúrate de que el backend esté en funcionamiento y configurar correctamente la URL base en el archivo de entorno de Angular.
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
+## Licencia
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](./LICENSE) para más detalles.

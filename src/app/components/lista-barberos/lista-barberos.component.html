@@ -9,7 +9,7 @@
 <p>No hay barberos disponibles</p>
 } -->
 
-<div class="w-full flex justify-around flex-col sm:flex-row ">
+<div class="w-full flex justify-around flex-col flex-wrap sm:flex-row ">
     @for(barbero of data; track barbero.id){
     <app-barbero-card [barbero]="barbero" />   }
 </div>
