@@ -6,6 +6,7 @@ import { CitasPageComponent } from './pages/citas-page/citas-page.component';
 import { VentasPageComponent } from './pages/ventas-page/ventas-page.component';
 import { AgregarFormComponent } from './components/agregar-form/agregar-form.component';
 import { LoginComponent } from './pages/login/login/login.component';
+import { RegisterComponent } from './pages/register/register/register.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
   {
     path: 'agregar-form',
     component: AgregarFormComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '**',
