@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BarberoService } from '../../services/barbero.service';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Barbero } from '../../models/barbero.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-form',
@@ -31,6 +32,15 @@ export class AgregarFormComponent {
       this.barberoService.createBarbero(barbero).subscribe({
         next:(response)=>{
           console.log('Barbero creado exitosamente: ', response);
+
+          Swal.fire({
+            title: '¡Guardado!',
+            text: 'Barbero guardado exitosamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+          
+
           this.barberoForm.reset();
         },
         error: (error)=>{
@@ -48,6 +58,10 @@ export class AgregarFormComponent {
       const control = this.barberoForm.get(key);
       control?.markAsTouched();
     });
+  }
+
+  openModal(): boolean{
+    return !true;
   }
 
 

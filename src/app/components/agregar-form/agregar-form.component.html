@@ -1,10 +1,10 @@
-<div class="w-full h-full flex flex-col justify-center items-center">
+<!-- <div class="w-full h-full flex flex-col justify-center items-center">
   <div class="w-full h-auto my-5 flex justify-center items-center">
     <h2 class=" text-5xl font-bold">Agregar Barbero</h2>
   </div>
-  <div class="flex flex-col items-center bg-blue-100 py-10 px-20 my-10 rounded-xl shadow-xl border-1 border-blue-300">
+  <div class="flex flex-col items-center bg-blue-100 py-10 px-20 my-10 rounded-xl shadow-xl border-1 border-blue-300"> -->
 
-    <form [formGroup]="barberoForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center">
+    <form [formGroup]="barberoForm" (ngSubmit)="onSubmit()" class="w-100 flex flex-col items-center">
       <label for="" class="font-light text-lg">Nombre</label>
       <input type="text" formControlName="nombre"
         class="w-70 h-10 rounded-sm bg-amber-50 my-3 px-1 border-1 border-blue-300 focus:border-2 focus:border-blue-800 focus:outline-none shadow-sm">
@@ -23,5 +23,5 @@
       <button class=" w-30 h-10 mt-5 bg-blue-800 p-2 text-white font-bold rounded-md shadow-md">Guardar</button>
     </form>
 
-  </div>
-</div>
+  <!-- </div>
+</div> -->
