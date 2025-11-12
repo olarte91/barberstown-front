@@ -1,0 +1,52 @@
+<div class="container mx-auto flex items-center justify-center min-h-screen p-4">
+  <p-card class="w-full max-w-md">
+    <ng-template pTemplate="header">
+      <div class="text-center pt-6">
+        <h2 class="text-2xl font-bold">Iniciar Sesión</h2>
+      </div>
+    </ng-template>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+
+      <!-- Campo Email -->
+      <div class="flex flex-col gap-2">
+        <label for="email" class="font-medium">Email</label>
+        <input pInputText id="email" type="email" formControlName="email" [invalid]="isInvalid('email')"
+          placeholder="correo@ejemplo.com" autocomplete="email" class="w-full" />
+
+        @if (isInvalid('email')) {
+        <p-message severity="error" size="small" [text]="loginForm.get('email')?.hasError('required')
+                    ? 'El email es requerido'
+                    : 'Email inválido'">
+        </p-message>
+        }
+      </div>
+
+      <!-- Campo Password -->
+      <div class="flex flex-col gap-2">
+        <label for="password" class="font-medium">Contraseña</label>
+        <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true"
+          placeholder="Ingresa tu contraseña" [invalid]="isInvalid('password')" autocomplete="current-password"
+          styleClass="w-full" [inputStyle]="{'width': '100%'}">
+        </p-password>
+
+        @if (isInvalid('password')) {
+        <p-message severity="error" size="small" text="La contraseña es requerida (mín. 6 caracteres)">
+        </p-message>
+        }
+      </div>
+
+      <!-- Botón Submit -->
+      <button pButton type="submit" label="Iniciar Sesión" [disabled]="loginForm.invalid" class="w-full mt-2">
+      </button>
+
+      <!-- Link opcional para registro -->
+      <div class="text-center mt-2">
+        <p class="text-sm text-gray-600">
+          ¿No tienes cuenta?
+          <a href="/registro" class="text-blue-600 hover:underline">Regístrate aquí</a>
+        </p>
+      </div>
+    </form>
+  </p-card>
+</div>

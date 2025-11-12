@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Barbero } from '../../models/barbero.interface';
-import { CommonModule } from '@angular/common';
+
 import { BarberoService } from '../../services/barbero.service';
 import { BarberoCardComponent } from "../barbero-card/barbero-card.component";
 
 @Component({
   selector: 'app-lista-barberos',
-  imports: [CommonModule, BarberoCardComponent],
+  imports: [BarberoCardComponent],
   templateUrl: './lista-barberos.component.html'
 })
 export class ListaBarberosComponent implements OnInit{

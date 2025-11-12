@@ -5,17 +5,17 @@ import { ClientesPageComponent } from './pages/clientes-page/clientes-page.compo
 import { CitasPageComponent } from './pages/citas-page/citas-page.component';
 import { VentasPageComponent } from './pages/ventas-page/ventas-page.component';
 import { AgregarFormComponent } from './components/agregar-form/agregar-form.component';
-import { LoginComponent } from './pages/login/login/login.component';
-import { RegisterComponent } from './pages/register/register/register.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent
+    redirectTo: 'auth',
+    pathMatch: 'full'
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.routes')
+    .then(m => m.AUTH_ROUTES)
   },
   {
     path: 'barberos',
@@ -38,11 +38,7 @@ export const routes: Routes = [
     component: AgregarFormComponent
   },
   {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'auth'
   }
 ];
