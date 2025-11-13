@@ -4,7 +4,7 @@ import { authGuard } from './features/auth/guards/auth-guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -19,7 +19,12 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'home',
+    loadChildren: () => import('./features/home/home.routes')
+    .then(m => m.HOME_ROUTES)
+  },
+  {
     path: '**',
-    redirectTo: 'auth'
+    redirectTo: 'home'
   }
 ];
