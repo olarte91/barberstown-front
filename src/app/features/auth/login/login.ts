@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
+import { AuthService } from '../services/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -21,6 +23,9 @@ export class Login implements OnInit {
 
   loginForm!: FormGroup;
 
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   constructor(private fb: FormBuilder) { }
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -35,8 +40,13 @@ export class Login implements OnInit {
   }
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Datos del login:', this.loginForm.value);
-      // Aquí harías la llamada a tu servicio de autenticación
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          localStorage.setItem('token', response.token);
+
+          this.router.navigate(['/dashboard'])
+        }
+      })
     }
   }
 
