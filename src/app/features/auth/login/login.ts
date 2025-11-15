@@ -6,7 +6,7 @@ import { PasswordModule } from 'primeng/password';
 import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
 import { AuthService } from '../services/auth-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
     PasswordModule,
     ButtonModule,
     CardModule,
-    MessageModule],
+    MessageModule, RouterLink],
   templateUrl: './login.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

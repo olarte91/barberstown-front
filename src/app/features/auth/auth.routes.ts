@@ -7,6 +7,11 @@ export const AUTH_ROUTES: Routes = [
     .then(m => m.Login)
   },
   {
+    path: 'register',
+    loadComponent: () => import ('./register/register')
+    .then(m => m.Register)
+  },
+  {
     path:'**',
     redirectTo: 'login'
   }
