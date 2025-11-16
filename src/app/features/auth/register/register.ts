@@ -1,20 +1,54 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth-service';
+import { Router } from '@angular/router';
+import { Button } from "primeng/button";
+import { PasswordModule } from 'primeng/password';
+import { MessageModule } from "primeng/message";
+import { Card } from "primeng/card";
+import { InputTextModule } from 'primeng/inputtext';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  imports: [ReactiveFormsModule, Button, PasswordModule, MessageModule, Card, InputTextModule, RadioButtonModule],
   templateUrl: './register.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Register implements OnInit{
+export class Register implements OnInit {
   registerForm!: FormGroup;
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.registerForm = this.fb.group({
-      //TODO
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', [Validators.required, Validators.minLength(6)]],
+      lastname: ['', [Validators.required, Validators.minLength(6)]],
+      image: ['', [Validators.required, Validators.minLength(6)]],
+      phone: ['', [Validators.required, Validators.min(10)]],
+      userType: ['', Validators.required]
     })
   }
+
+  isValid(field: string): boolean {
+    const control = this.registerForm.get(field);
+    return control ? control.invalid && (control.dirty || control.touched) : false;
+  }
+
+  onSubmit(){
+    if(this.registerForm.valid){
+      this.authService.register(this.registerForm.value).subscribe({
+        next: (response) => {
+          localStorage.setItem('token', response.token);
+
+          this.router.navigate(['/dashboard']);
+        }
+      })
+    }
+  }
+
 }

@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { loginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response';
 import { Observable } from 'rxjs';
+import { RegisterRequest } from '../models/register-request';
+import { RegisterResponse } from '../models/register-response';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,10 @@ export class AuthService {
 
   login(credentials: loginRequest): Observable<LoginResponse>{
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials);
+  }
+
+  register(newUser: RegisterRequest): Observable<RegisterResponse>{
+    return this.http.post<RegisterResponse>(`${this.apiUrl}/register`, newUser);
   }
 
 }

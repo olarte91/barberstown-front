@@ -1,3 +1,127 @@
 <div class="container mx-auto flex items-center justify-center min-h-screen p-4">
-  <h1>Formulario de registro</h1>
+  <p-card class="w-full max-w-md">
+    <ng-template pTemplate="header">
+      <div class="text-center pt-6">
+        <h2 class="text-2xl font-bold">Crear Cuenta</h2>
+      </div>
+    </ng-template>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+
+      <!-- Email -->
+      <div class="flex flex-col gap-2">
+        <label for="email" class="font-medium">Email</label>
+        <input pInputText id="email" type="email" formControlName="email" [invalid]="isValid('email')"
+          placeholder="correo@ejemplo.com" autocomplete="email" class="w-full" />
+        @if (isValid('email')) {
+        <p-message severity="error" size="small" [text]="registerForm.get('email')?.hasError('required')
+            ? 'El email es requerido'
+            : 'Email inválido'">
+        </p-message>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="flex flex-col gap-2">
+        <label for="password" class="font-medium">Contraseña</label>
+        <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true"
+          placeholder="Mínimo 6 caracteres" [invalid]="isValid('password')" autocomplete="new-password"
+          styleClass="w-full" [inputStyle]="{'width': '100%'}">
+        </p-password>
+        @if (isValid('password')) {
+        <p-message severity="error" size="small" text="Contraseña requerida (mín. 6 caracteres)">
+        </p-message>
+        }
+      </div>
+
+      <!-- Username -->
+      <div class="flex flex-col gap-2">
+        <label for="username" class="font-medium">Usuario</label>
+        <input pInputText id="username" type="text" formControlName="username" [invalid]="isValid('username')"
+          placeholder="Nombre de usuario" autocomplete="username" class="w-full" />
+        @if (isValid('username')) {
+        <p-message severity="error" size="small" text="Usuario requerido (mín. 6 caracteres)">
+        </p-message>
+        }
+      </div>
+
+      <!-- Name y Lastname en grid -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-2">
+          <label for="name" class="font-medium">Nombre</label>
+          <input pInputText id="name" type="text" formControlName="name" [invalid]="isValid('name')"
+            placeholder="Nombre" autocomplete="given-name" class="w-full" />
+          @if (isValid('name')) {
+          <p-message severity="error" size="small" text="Requerido">
+          </p-message>
+          }
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="lastname" class="font-medium">Apellido</label>
+          <input pInputText id="lastname" type="text" formControlName="lastname" [invalid]="isValid('lastname')"
+            placeholder="Apellido" autocomplete="family-name" class="w-full" />
+          @if (isValid('lastname')) {
+          <p-message severity="error" size="small" text="Requerido">
+          </p-message>
+          }
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="flex flex-col gap-2">
+        <label for="phone" class="font-medium">Teléfono</label>
+        <input pInputText id="phone" type="tel" formControlName="phone" [invalid]="isValid('phone')"
+          placeholder="3001234567" autocomplete="tel" class="w-full" />
+        @if (isValid('phone')) {
+        <p-message severity="error" size="small" text="Teléfono requerido (mín. 10 dígitos)">
+        </p-message>
+        }
+      </div>
+
+      <!-- Image URL -->
+      <div class="flex flex-col gap-2">
+        <label for="image" class="font-medium">URL de imagen (opcional)</label>
+        <input pInputText id="image" type="url" formControlName="image" [invalid]="isValid('image')"
+          placeholder="https://ejemplo.com/imagen.jpg" class="w-full" />
+        @if (isValid('image')) {
+        <p-message severity="error" size="small" text="URL requerida">
+        </p-message>
+        }
+      </div>
+
+      <!-- Radio Buttons -->
+      <div class="flex flex-col gap-2">
+        <label class="font-medium">Tipo de usuario</label>
+        <div class="flex gap-6">
+          <div class="flex items-center gap-2">
+            <p-radioButton formControlName="userType" value="BARBER" inputId="barber" />
+            <label for="barber" class="cursor-pointer">Barbero</label>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <p-radioButton formControlName="userType" value="CUSTOMER" inputId="customer" />
+            <label for="customer" class="cursor-pointer">Cliente</label>
+          </div>
+        </div>
+        @if (isValid('userType')) {
+        <p-message severity="error" size="small" text="Selecciona un tipo de usuario">
+        </p-message>
+        }
+      </div>
+
+      <!-- Botón Submit -->
+      <p-button type="submit" severity="warn" label="Crear cuenta" icon="pi pi-user-plus"
+        [disabled]="registerForm.invalid" class="w-full mt-2">
+      </p-button>
+
+      <!-- Link para login -->
+      <div class="text-center mt-2">
+        <p class="text-sm text-gray-600">
+          ¿Ya tienes cuenta?
+          <a routerLink="/auth/login" class="text-blue-600 hover:underline">Inicia sesión aquí</a>
+        </p>
+      </div>
+    </form>
+  </p-card>
 </div>
