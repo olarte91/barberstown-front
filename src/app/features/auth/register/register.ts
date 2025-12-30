@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Button } from "primeng/button";
 import { PasswordModule } from 'primeng/password';
 import { MessageModule } from "primeng/message";
@@ -11,7 +11,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, Button, PasswordModule, MessageModule, Card, InputTextModule, RadioButtonModule],
+  imports: [ReactiveFormsModule, Button, PasswordModule, MessageModule, Card, InputTextModule, RadioButtonModule, RouterLink],
   templateUrl: './register.html',
 })
 export class Register implements OnInit {
@@ -26,9 +26,8 @@ export class Register implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       username: ['', [Validators.required, Validators.minLength(6)]],
-      name: ['', [Validators.required, Validators.minLength(6)]],
-      lastname: ['', [Validators.required, Validators.minLength(6)]],
-      image: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
       phone: ['', [Validators.required, Validators.min(10)]],
       userType: ['', Validators.required]
     })

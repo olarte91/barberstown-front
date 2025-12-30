@@ -14,9 +14,10 @@
         <input pInputText id="email" type="email" formControlName="email" [invalid]="isValid('email')"
           placeholder="correo@ejemplo.com" autocomplete="email" class="w-full" />
         @if (isValid('email')) {
-        <p-message severity="error" size="small" [text]="registerForm.get('email')?.hasError('required')
-            ? 'El email es requerido'
-            : 'Email inválido'">
+        <p-message severity="error" size="small">
+          {{ registerForm.get('email')?.hasError('required')
+          ? 'El email es requerido'
+          : 'Email inválido'}}
         </p-message>
         }
       </div>
@@ -25,11 +26,12 @@
       <div class="flex flex-col gap-2">
         <label for="password" class="font-medium">Contraseña</label>
         <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true"
-          placeholder="Mínimo 6 caracteres" [invalid]="isValid('password')" autocomplete="new-password"
-          styleClass="w-full" [inputStyle]="{'width': '100%'}">
+          placeholder="Mínimo 6 caracteres" [invalid]="isValid('password')" autocomplete="new-password" class="w-full"
+          [inputStyle]="{'width': '100%'}">
         </p-password>
         @if (isValid('password')) {
-        <p-message severity="error" size="small" text="Contraseña requerida (mín. 6 caracteres)">
+        <p-message severity="error" size="small">
+          Contraseña requerida (mín. 6 caracteres)
         </p-message>
         }
       </div>
@@ -40,7 +42,8 @@
         <input pInputText id="username" type="text" formControlName="username" [invalid]="isValid('username')"
           placeholder="Nombre de usuario" autocomplete="username" class="w-full" />
         @if (isValid('username')) {
-        <p-message severity="error" size="small" text="Usuario requerido (mín. 6 caracteres)">
+        <p-message severity="error" size="small">
+          Usuario requerido (mín. 6 caracteres)
         </p-message>
         }
       </div>
@@ -52,7 +55,8 @@
           <input pInputText id="name" type="text" formControlName="name" [invalid]="isValid('name')"
             placeholder="Nombre" autocomplete="given-name" class="w-full" />
           @if (isValid('name')) {
-          <p-message severity="error" size="small" text="Requerido">
+          <p-message severity="error" size="small">
+            Nombre es requerido
           </p-message>
           }
         </div>
@@ -62,7 +66,8 @@
           <input pInputText id="lastname" type="text" formControlName="lastname" [invalid]="isValid('lastname')"
             placeholder="Apellido" autocomplete="family-name" class="w-full" />
           @if (isValid('lastname')) {
-          <p-message severity="error" size="small" text="Requerido">
+          <p-message severity="error" size="small">
+            Apellido es requerido
           </p-message>
           }
         </div>
@@ -74,18 +79,8 @@
         <input pInputText id="phone" type="tel" formControlName="phone" [invalid]="isValid('phone')"
           placeholder="3001234567" autocomplete="tel" class="w-full" />
         @if (isValid('phone')) {
-        <p-message severity="error" size="small" text="Teléfono requerido (mín. 10 dígitos)">
-        </p-message>
-        }
-      </div>
-
-      <!-- Image URL -->
-      <div class="flex flex-col gap-2">
-        <label for="image" class="font-medium">URL de imagen (opcional)</label>
-        <input pInputText id="image" type="url" formControlName="image" [invalid]="isValid('image')"
-          placeholder="https://ejemplo.com/imagen.jpg" class="w-full" />
-        @if (isValid('image')) {
-        <p-message severity="error" size="small" text="URL requerida">
+        <p-message severity="error" size="small">
+          Teléfono requerido (min. 10 dígitos)
         </p-message>
         }
       </div>

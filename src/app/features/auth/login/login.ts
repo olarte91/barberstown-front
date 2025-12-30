@@ -7,6 +7,8 @@ import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
 import { AuthService } from '../services/auth-service';
 import { Router, RouterLink } from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'login',
@@ -26,7 +28,7 @@ export class Login implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private messageService: MessageService) { }
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -45,6 +47,15 @@ export class Login implements OnInit {
           localStorage.setItem('token', response.token);
 
           this.router.navigate(['/dashboard'])
+        },
+        error: (error: HttpErrorResponse) => {
+            if(error.status === 0){
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error de conexión',
+                detail: 'No se pudo conectar con el servidor'
+              })
+            }
         }
       })
     }
